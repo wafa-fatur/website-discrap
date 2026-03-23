@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nightflix</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0d0d0d;
+  color: white;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(to right, #800000, red);
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* SEARCH */
+.search-box {
+  text-align: center;
+  padding: 20px;
+}
+
+.search-box input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+}
+
+/* GENRE */
+.genre {
+  margin: 20px;
+}
+
+.genre h2 {
+  color: red;
+}
+
+/* SCROLL */
+.movie-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+}
+
+/* CARD */
+.card {
+  min-width: 150px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 8px;
+}
+
+/* POPUP */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.close {
+  margin-top: 10px;
+  padding: 8px;
+  background: red;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">🎬 Nightflix</div>
+
+<div class="search-box">
+  <input type="text" id="search" placeholder="Cari film...">
+</div>
+
+<!-- ACTION -->
+<div class="genre">
+<h2>🔥 Action</h2>
+<div class="movie-row">
+  <div class="card" onclick="showDetail('John Wick','7.4','2014','4.jpg')"><img src="4.jpg"><div class="info"><h4>John Wick</h4></div></div>
+  <div class="card" onclick="showDetail('Mad Max','8.1','2015','https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg')"><img src="https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg"><div class="info"><h4>Mad Max</h4></div></div>
+  <div class="card" onclick="showDetail('Endgame','8.4','2019','https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg')"><img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"><div class="info"><h4>Endgame</h4></div></div>
+  <div class="card" onclick="showDetail('Gladiator','8.5','2000','1.jpg')"><img src="1.jpg"><div class="info"><h4>Gladiator</h4></div></div>
+  <div class="card" onclick="showDetail('The Dark Knight','9.0','2008','https://image.tmdb.org/t/p/w500/1hRoyzDtpgMU7Dz4JF22RANzQO7.jpg')"><img src="https://image.tmdb.org/t/p/w500/1hRoyzDtpgMU7Dz4JF22RANzQO7.jpg"><div class="info"><h4>The Dark Knight</h4></div></div>
+</div>
+</div>
+
+<!-- HORROR -->
+<div class="genre">
+<h2>👻 Horror</h2>
+<div class="movie-row">
+  <div class="card" onclick="showDetail('The Conjuring','7.5','2013','https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrHT704wGF.jpg')"><img src="https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrHT704wGF.jpg"><div class="info"><h4>The Conjuring</h4></div></div>
+  <div class="card" onclick="showDetail('Insidious','6.8','2010','3.jpg')"><img src="3.jpg"><div class="info"><h4>Insidious</h4></div></div>
+  <div class="card" onclick="showDetail('IT','7.3','2017','https://image.tmdb.org/t/p/w500/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg')"><img src="https://image.tmdb.org/t/p/w500/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg"><div class="info"><h4>IT</h4></div></div>
+  <div class="card" onclick="showDetail('Annabelle','5.4','2014','7.jpg')"><img src="7.jpg"><div class="info"><h4>Annabelle</h4></div></div>
+  <div class="card" onclick="showDetail('The Nun','5.3','2018','11.jpg')"><img src="11.jpg"><div class="info"><h4>The Nun</h4></div></div>
+</div>
+</div>
+
+<!-- COMEDY -->
+<div class="genre">
+<h2>😂 Comedy</h2>
+<div class="movie-row">
+  <div class="card" onclick="showDetail('Mr Bean','7.5','1997','8.jpg')"><img src="8.jpg"><div class="info"><h4>Mr Bean</h4></div></div>
+  <div class="card" onclick="showDetail('Home Alone','7.7','1990','https://image.tmdb.org/t/p/w500/9wSbe4CwObACCQvaUVhWQyLR5Vz.jpg')"><img src="https://image.tmdb.org/t/p/w500/9wSbe4CwObACCQvaUVhWQyLR5Vz.jpg"><div class="info"><h4>Home Alone</h4></div></div>
+  <div class="card" onclick="showDetail('The Hangover','7.7','2009','https://image.tmdb.org/t/p/w500/uluhlXubGu1VxU63X9VHCLWDAYP.jpg')"><img src="https://image.tmdb.org/t/p/w500/uluhlXubGu1VxU63X9VHCLWDAYP.jpg"><div class="info"><h4>The Hangover</h4></div></div>
+  <div class="card" onclick="showDetail('Superbad','7.6','2007','https://image.tmdb.org/t/p/w500/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg')"><img src="https://image.tmdb.org/t/p/w500/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg"><div class="info"><h4>Superbad</h4></div></div>
+  <div class="card" onclick="showDetail('Yes Man','6.8','2008','2.jpg')"><img src="2.jpg"><div class="info"><h4>Yes Man</h4></div></div>
+</div>
+</div>
+
+<!-- ANIME -->
+<div class="genre">
+<h2>🎌 Anime</h2>
+<div class="movie-row">
+  <div class="card" onclick="showDetail('Your Name','8.4','2016','12.jpg')"><img src="12.jpg"><div class="info"><h4>Your Name</h4></div></div>
+  <div class="card" onclick="showDetail('Spirited Away','8.6','2001','https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg')"><img src="https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg"><div class="info"><h4>Spirited Away</h4></div></div>
+  <div class="card" onclick="showDetail('Demon Slayer','8.7','2020','5.jpg')"><img src="5.jpg"><div class="info"><h4>Demon Slayer</h4></div></div>
+  <div class="card" onclick="showDetail('Jujutsu Kaisen 0','7.9','2021','6.jpg')"><img src="6.jpg"><div class="info"><h4>Jujutsu Kaisen 0</h4></div></div>
+  <div class="card" onclick="showDetail('One Piece Red','7.0','2022','9.jpg')"><img src="9.jpg"><div class="info"><h4>One Piece Red</h4></div></div>
+</div>
+</div>
+
+<!-- ROMANCE -->
+<div class="genre">
+<h2>❤️ Romance</h2>
+<div class="movie-row">
+  <div class="card" onclick="showDetail('Titanic','7.9','1997','https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg')"><img src="https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg"><div class="info"><h4>Titanic</h4></div></div>
+  <div class="card" onclick="showDetail('La La Land','8.0','2016','https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg')"><img src="https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg"><div class="info"><h4>La La Land</h4></div></div>
+  <div class="card" onclick="showDetail('The Notebook','7.8','2004','https://image.tmdb.org/t/p/w500/qom1SZSENdmHFNZBXbtJAU0WTlC.jpg')"><img src="https://image.tmdb.org/t/p/w500/qom1SZSENdmHFNZBXbtJAU0WTlC.jpg"><div class="info"><h4>The Notebook</h4></div></div>
+  <div class="card" onclick="showDetail('Me Before You','7.4','2016','https://image.tmdb.org/t/p/w500/Ia3dzj5LnCj1ZBdlVeJrbKJQxG.jpg')"><img src="https://image.tmdb.org/t/p/w500/Ia3dzj5LnCj1ZBdlVeJrbKJQxG.jpg"><div class="info"><h4>Me Before You</h4></div></div>
+  <div class="card" onclick="showDetail('500 Days of Summer','7.6','2009','10.jpg')"><img src="10.jpg"><div class="info"><h4>500 Days of Summer
+</h4></div></div>
+</div>
+</div>
+
+<!-- POPUP -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <img id="modalImg">
+    <h3 id="modalTitle"></h3>
+    <p id="modalInfo"></p>
+    <button class="close" onclick="closeModal()">Tutup</button>
+  </div>
+</div>
+
+<script>
+function showDetail(title, rating, year, img) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalInfo").innerText = "⭐ " + rating + " | " + year;
+  document.getElementById("modalImg").src = img;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// SEARCH
+document.getElementById("search").addEventListener("keyup", function() {
+  let filter = this.value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    let title = card.innerText.toLowerCase();
+    card.style.display = title.includes(filter) ? "block" : "none";
+  });
+});
+  //tinggal di samain desain nya
+</script>
+
+</body>
+</html>
